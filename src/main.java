@@ -5,7 +5,7 @@ public class main {
         }
         return fib(n-1)+fib(n-2);
 
-    }
+    };//o(2^n)
 
     public static int fib2(int n){
         if (n<=1){
@@ -18,7 +18,7 @@ public class main {
             first=second;
             second=sum;
         }
-        return second;
+        return second;//o（n)
 
     }
 
