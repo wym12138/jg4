@@ -1,14 +1,17 @@
-public class arraylist {
+public class arraylist<E> {
     private int size;
-    private int[] elements;
+    private E[] elements;
 
     private static final int DEFAYLT_CAPACITY=10;
     private static final int ELEMENT_NOTFOUND=-1;
 
 
+    //------------增删改查-------------------------------
+
+
     public arraylist(int capaticy){
         capaticy=(capaticy<0)?DEFAYLT_CAPACITY:capaticy;//三元
-        elements=new int[capaticy];
+        elements= (E[]) new Object [capaticy];
 
     }
     public arraylist(){
@@ -16,6 +19,9 @@ public class arraylist {
     }
 
     public void clear(){
+        for(int i=0;i<size;i++){//清空数组中地址，对象因此消失//内存管理细节
+            elements[i]=null;
+        }
         size=0;
     }
 
@@ -27,55 +33,75 @@ public class arraylist {
         return size==0;
     }
 
-    public void add(int element){
-        elements[size]=element;
-        size++;
-
+    public void add(E element){
+        add(size,element);
     }
-    public int get(int index){
+    public E get(int index){
         if (index<0||index>=size){
             throw new IndexOutOfBoundsException("index越界");//索引越界异常
         }
         return elements[index];
     }
 
-    public int set(int index,int element){
+    public E set(int index,E element){
         if (index<0||index>=size){
             throw new IndexOutOfBoundsException("index越界");//索引越界异常
         }
-        int old=elements[index];
+        E old=elements[index];
         elements[index]=element;
         return old;
     }
 
-    public void add(int index,int element){
+    public void add(int index,E element){
+        if (index<0||index>size){//允许index=size
+            throw new IndexOutOfBoundsException("index越界");//索引越界异常
+        }
+        //扩容
+        ensureConpasity(size+1);
+
+        for (int i=size-1;i>=index;i--){
+            elements[i+1]=elements[i];
+        }
+        elements[index]=element;
+        size++;
+
 
 
     }
 
-    public int remove(int index){//挪动
+    public E remove(int index){//挪动
         if (index<0||index>=size){
             throw new IndexOutOfBoundsException("index越界");//索引越界异常
         }
-        int old=elements[index];
+        E old=elements[index];
         for (int i=index+1;i<=size-1;i++){
             elements[i-1]=elements[i];
         }
         size--;
+        elements[size]=null;//内存管理细节
 
         return old;
     }
 
-    public int indexOf(int element){//写元素返回索引
-        for (int i=0;i<size;i++){
-            if (element==elements[i])
-                return i;
+    public int indexOf(E element){//写元素返回索引
+        if (element==null){
+            for (int i = 0; i < size; i++) {
+                if (elements[i]==null)
+                    return i;
+            }
+
+        }else {
+
+            for (int i = 0; i < size; i++) {
+                if (element.equals(elements[i]))
+                    return i;
+            }
         }
         return ELEMENT_NOTFOUND;
 
     }
 
-    public boolean contains(int element){
+    public boolean contains(E element){
         return indexOf(element)!=ELEMENT_NOTFOUND;
     }
 
@@ -86,6 +112,28 @@ public class arraylist {
             sb.append(" ");
         }
         return sb.toString();
+    }
+
+
+    //----------------------------------------------------
+
+    private void ensureConpasity(int newcapacity){//保证有capacity的容量
+        int oldcap =elements.length;
+        if (oldcap>=newcapacity){
+            return;
+        }else {
+            int new1=oldcap+(oldcap>>1);//1.5倍
+            E[] newElement= (E[]) new Object[new1];
+            for (int i=0;i<size;i++){
+                newElement[i]=elements[i];
+            }
+            elements=newElement;
+
+
+
+        }
+
+
     }
 
 
