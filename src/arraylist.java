@@ -1,4 +1,6 @@
-public class arraylist<E> {
+import linked.List;
+
+public class arraylist<E>  {
     private int size;
     private E[] elements;
 
@@ -74,13 +76,17 @@ public class arraylist<E> {
             throw new IndexOutOfBoundsException("index越界");//索引越界异常
         }
         E old=elements[index];
-        for (int i=index+1;i<=size-1;i++){
+        for (int i=index+1;i<size;i++){
             elements[i-1]=elements[i];
         }
         size--;
         elements[size]=null;//内存管理细节
 
         return old;
+    }
+
+    public void remove(E element){
+        remove(indexOf(element));
     }
 
     public int indexOf(E element){//写元素返回索引
