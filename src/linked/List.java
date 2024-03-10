@@ -7,15 +7,16 @@ public interface List <E>{
 
     boolean isEmpty();
 
-    void add();
+    void add(E element);
+    void add(int size,E element);
 
     E get();
     E set();
 
     E remove();
-    int indexOf();
+    int indexOf(E element);
 
-    boolean contains();
+    boolean contains(E element);
 
     String toString();
 
