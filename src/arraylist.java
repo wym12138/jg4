@@ -82,6 +82,8 @@ public class arraylist<E>  {
         size--;
         elements[size]=null;//内存管理细节
 
+        trim();//缩容
+
         return old;
     }
 
@@ -134,12 +136,19 @@ public class arraylist<E>  {
                 newElement[i]=elements[i];
             }
             elements=newElement;
-
-
-
         }
+    }
 
+    private void trim(){
+        int capacity=elements.length;
+        if (size>=(capacity>>1) || capacity<=DEFAYLT_CAPACITY) return;
 
+        int new1=capacity>>1;//half
+        E[] newElement= (E[]) new Object[new1];
+        for (int i=0;i<size;i++){
+            newElement[i]=elements[i];
+        }
+        elements=newElement;
     }
 
 

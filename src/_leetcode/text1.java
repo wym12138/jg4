@@ -2,7 +2,7 @@ package _leetcode;
 
 public class text1 {//删除节点
 
-    public class ListNode{
+    private  class ListNode{
         int val;
         ListNode next;
         ListNode(int x){

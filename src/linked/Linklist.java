@@ -1,6 +1,6 @@
 package linked;
 
-public class Linklist <E>{
+public class Linklist <E>{//添加虚拟头节点更方便
     private int size;
     private Node<E> firstNode;
 
@@ -27,7 +27,7 @@ public class Linklist <E>{
 
     public void add(int index,E element) {
         if (index==0){
-            firstNode = new Node<>(element, firstNode);
+            firstNode = new Node<>(element, firstNode);//先赋值后操作
             size++;
         }else {
             Node<E> prev = node(index - 1);
@@ -55,6 +55,7 @@ public class Linklist <E>{
 
 
     public E remove(int index) {
+        rangeCheck(index);
         Node<E> node=firstNode;
         if (index == 0) {
             firstNode=firstNode.next;
@@ -132,7 +133,7 @@ public class Linklist <E>{
 
     public void rangeCheck(int index){
         //rangecheck
-        if (index<0||index>size){//允许index=size
+        if (index<0||index>=size){//允许index=size(在添加中允许）
             throw new IndexOutOfBoundsException("index越界");//索引越界异常
         }
     }
