@@ -25,6 +25,10 @@ public class arraylist<E>  {
             elements[i]=null;
         }
         size=0;
+        if (elements!=null&&elements.length>DEFAYLT_CAPACITY){
+            elements= (E[]) new Object[DEFAYLT_CAPACITY];
+        }
+
     }
 
     public int size(){
@@ -141,7 +145,7 @@ public class arraylist<E>  {
 
     private void trim(){
         int capacity=elements.length;
-        if (size>=(capacity>>1) || capacity<=DEFAYLT_CAPACITY) return;
+        if (size>=(capacity>>1) || capacity<=DEFAYLT_CAPACITY) return;//注意复杂震荡度：扩容倍数与缩容倍数相乘=1
 
         int new1=capacity>>1;//half
         E[] newElement= (E[]) new Object[new1];

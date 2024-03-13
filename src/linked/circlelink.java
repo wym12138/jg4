@@ -1,8 +1,8 @@
 package linked;
 
-public class Linklist <E>{//添加虚拟头节点更方便
+public class circlelink<E> {
     private int size;
-    private Node<E> firstNode;
+    private Linklist.Node<E> firstNode;
 
     private static final int ELEMENT_NOTFOUND=-1;
 
@@ -27,11 +27,14 @@ public class Linklist <E>{//添加虚拟头节点更方便
 
     public void add(int index,E element) {
         if (index==0){
-            firstNode = new Node<>(element, firstNode);//先赋值后操作
+            firstNode = new Linklist.Node<>(element, firstNode);//先赋值后操作
+            //那到最后一个节点
+            Linklist.Node<E> last =(size==0)?firstNode :node(size - 1);
+            last.next=firstNode;
             size++;
         }else {
-            Node<E> prev = node(index - 1);
-            prev.next=new Node<E>(element,prev.next);
+            Linklist.Node<E> prev = node(index - 1);
+            prev.next=new Linklist.Node<E>(element,prev.next);
             size++;
         }
     }
@@ -47,7 +50,7 @@ public class Linklist <E>{//添加虚拟头节点更方便
 
 
     public E set(int index,E element) {
-        Node<E> node=node(index);
+        Linklist.Node<E> node=node(index);
         E old=node.element;
         node.element=element;
         return old;
@@ -56,12 +59,18 @@ public class Linklist <E>{//添加虚拟头节点更方便
 
     public E remove(int index) {
         rangeCheck(index);
-        Node<E> node=firstNode;
+        Linklist.Node<E> node=firstNode;
         if (index == 0) {
-            firstNode=firstNode.next;
+            if (size==1){
+                firstNode=null;
+            }else {
+                Linklist.Node<E> last = node(size - 1);
+                firstNode = firstNode.next;
+                last.next = firstNode;
+            }
 
         }else {
-            Node<E> prev = node(index - 1);
+            Linklist.Node<E> prev = node(index - 1);
             node=prev.next;
             prev.next = prev.next.next;
         }
@@ -75,7 +84,7 @@ public class Linklist <E>{//添加虚拟头节点更方便
 
     public int indexOf(E element) {
         if (element==null){
-            Node<E> node=firstNode;
+            Linklist.Node<E> node=firstNode;
             for (int i = 0; i < size; i++) {
                 if (node.element==null)
                     return i;
@@ -83,7 +92,7 @@ public class Linklist <E>{//添加虚拟头节点更方便
             }
 
         }else {
-            Node<E> node=firstNode;
+            Linklist.Node<E> node=firstNode;
             for (int i = 0; i < size; i++) {
                 if (element.equals(node.element))
                     return i;
@@ -101,34 +110,20 @@ public class Linklist <E>{//添加虚拟头节点更方便
 
     public String toString(){
 
-            Node<E> node=firstNode;
-            StringBuilder sb=new StringBuilder();
-            for (int i=0;i<size;i++){
-                sb.append(node.element);
-                sb.append(" ");
-                node=node.next;
-            }
-            return sb.toString();
+        Linklist.Node<E> node=firstNode;
+        StringBuilder sb=new StringBuilder();
+        for (int i=0;i<size;i++){
+            sb.append(node.element);
+            sb.append(" ");
+            node=node.next;
+        }
+        return sb.toString();
     }
 
-    static class Node<E>{
-        E element;
-        Node<E> next;
-        Node<E> prev;/////////////////2
-        public Node(E element,Node<E> next){
-            this.element=element;
-            this.next=next;
-        }
-        public Node(Node<E> prev,E element,Node<E> next){///////////////////22222222
-            this.element=element;
-            this.next=next;
-            this.prev=prev;
-        }
-    }
     //---------------------------------------------------------------
-    private Node<E> node (int index){//获取index位置节点对象
+    private Linklist.Node<E> node (int index){//获取index位置节点对象
         rangeCheck(index);
-        Node<E> node=firstNode;
+        Linklist.Node<E> node=firstNode;
         for (int i=0;i<index;i++){
             node=node.next;
         }
@@ -142,6 +137,5 @@ public class Linklist <E>{//添加虚拟头节点更方便
             throw new IndexOutOfBoundsException("index越界");//索引越界异常
         }
     }
-
 
 }
