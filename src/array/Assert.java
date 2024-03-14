@@ -1,3 +1,5 @@
+package array;
+
 public class Assert {
     public static void test(boolean value){
         if(!value) try {

@@ -1,9 +1,31 @@
 package linked;
 
-public class circlelink<E> {
+public class criclelink2<E> {
     private int size;
     private Linklist.Node<E> firstNode;
+    private Linklist.Node<E> lastnode;
 
+    private Linklist.Node<E> current;/////ysf
+
+    public void reset(){
+        current=firstNode;
+    }
+    public E next(){
+        if (current==null) return null;
+        current=current.next;
+        return current.element;
+    }
+    public E remove(){
+        if (current==null) return null;
+        Linklist.Node<E> next=current.next;
+        int index = indexOf(current.element);
+        E element = remove(index);
+        //可能空指针异常
+        if (size==0) current=null;
+        else current=next;
+
+        return element;
+    }
     private static final int ELEMENT_NOTFOUND=-1;
 
 
@@ -26,18 +48,27 @@ public class circlelink<E> {
 
 
     public void add(int index,E element) {
-        if (index==0){
-            Linklist.Node<E> newFirst = new Linklist.Node<>(element, firstNode);//firstnode不可先改，重新定义中间值
-            //那到最后一个节点
-            Linklist.Node<E> last =(size==0)?newFirst :node(size-1);
-            last.next=newFirst;
-            firstNode=newFirst;
-            size++;
+        if (index!=size) {//bu最后面加
+            Linklist.Node<E> next = node(index);
+            Linklist.Node<E> prev = next.prev;
+            Linklist.Node node = new Linklist.Node<>(prev, element, next);
+            prev.next = node;
+            if (prev == lastnode) {//index==0
+                firstNode = node;
+            }
         }else {
-            Linklist.Node<E> prev = node(index - 1);
-            prev.next=new Linklist.Node<E>(element,prev.next);
-            size++;
+            Linklist.Node<E> oldlast=lastnode;
+            lastnode=new Linklist.Node<>(lastnode,element,firstNode);
+            if (oldlast==null){//空链表
+                firstNode=lastnode;
+                lastnode.next=lastnode;
+                lastnode.prev=lastnode;
+            }else {
+                oldlast.next=lastnode;
+                firstNode.prev=lastnode;
+            }
         }
+        size++;
     }
 
     public void add(E element){
@@ -59,24 +90,29 @@ public class circlelink<E> {
 
 
     public E remove(int index) {
+
         rangeCheck(index);
         Linklist.Node<E> node=firstNode;
-        if (index == 0) {
-            if (size==1){
-                firstNode=null;
-            }else {
-                Linklist.Node<E> last = node(size - 1);
-                firstNode = firstNode.next;
-                last.next = firstNode;
+        if (size==1){
+            firstNode=null;
+            lastnode=null;
+            size--;
+            return node.element;
+        }else {
+             node = node(index);
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+
+            if (node.prev == lastnode) {//index==0
+                firstNode = node.next;
             }
 
-        }else {
-            Linklist.Node<E> prev = node(index - 1);
-            node=prev.next;
-            prev.next = prev.next.next;
+            if (node.next == firstNode) {
+                lastnode = node.prev;
+            }
+            size--;
+            return node.element;
         }
-        size--;
-        return node.element;
 
     }
 

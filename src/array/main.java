@@ -1,3 +1,5 @@
+package array;
+
 public class main {
     public static int fib(int n){//递归求数
         if (n<=1){

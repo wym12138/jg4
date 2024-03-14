@@ -1,3 +1,5 @@
+package array;
+
 import jdk.internal.dynalink.DynamicLinker;
 
 public class array {
