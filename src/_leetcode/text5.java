@@ -1,6 +1,7 @@
 package _leetcode;
 //有效的括号..........栈类似
 
+import java.util.HashMap;
 import java.util.Stack;
 
 public class text5 {
@@ -17,7 +18,7 @@ public class text5 {
         Stack<Character> stack=new Stack<>();
         int len=s.length();
         for (int i=0;i<len;i++){
-            char c=s.charAt(i);
+            char c=s.charAt(i);//返回每个字符
             if (c=='('||c=='['||c=='{'){//左括号
                 stack.push(c);
             }else {
@@ -31,6 +32,16 @@ public class text5 {
         }
         return stack.isEmpty();
     }
+
+    private static HashMap<Character,Character> map=new HashMap<>();
+    //containsKey有得做
+    //get左得右
+    static {
+        map.put('(',')');
+    }
+
+
+
 
 
 
