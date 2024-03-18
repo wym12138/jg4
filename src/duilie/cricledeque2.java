@@ -12,6 +12,9 @@ public class cricledeque2 <E>{
         }else {
             return  index % elements.length;
         }
+
+        //优化算法
+        //return index-(index>=elements.length? elements.length : 0);
     }
 
     public cricledeque2() {
@@ -25,6 +28,14 @@ public class cricledeque2 <E>{
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    public void clear(){
+        size=0;
+        for (int i=0;i<size;i++){
+            elements[index(i)]=null;
+        }
+        front=0;
     }
 
     public void enQueueRear(E element) {//入队
