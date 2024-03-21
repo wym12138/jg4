@@ -3,7 +3,7 @@ package ercha;
 public class erchasousuo <E>{
 
     private int size;
-    private Node<E> root;
+    private  Node<E> root;
 
     private Comparator<E> comparator;
 
@@ -38,13 +38,14 @@ public class erchasousuo <E>{
         Node<E> parent=null;//存下来父节点
         int compare=0;//存下来最后一次比较结果
         while (node!=null){
-            compare = compare(element, root.element);
+            compare = compare(element, node.element);
             parent=node;
             if (compare>0){
                 node=node.right;//类似链表指针变化
             } else if (compare < 0) {
                 node=node.left;
             }else {
+                node.element=element;
                 return;
             }
         }
@@ -83,7 +84,7 @@ public class erchasousuo <E>{
             throw new IllegalArgumentException("不能唯恐");
         }
     }
-    private static class Node<E>{
+    private class Node<E>{
         E element;
         Node<E> left;
         Node<E> right;
@@ -93,6 +94,47 @@ public class erchasousuo <E>{
         public Node(E element,Node<E> parent){
             this.element=element;
             this.parent=parent;
+        }
+
+        //------------------------遍历
+        private void preorder(erchasousuo<E>.Node<E> node){
+            if (node==null) return;
+            System.out.println(node.element);
+            preorder(node.left);
+            preorder(node.right);
+        }
+        public void preorder(){//执行函数
+            preorder((erchasousuo<E>.Node<E>) root);
+
+        }
+
+
+        private void middle(erchasousuo<E>.Node<E> node){
+            if (node==null) return;
+            middle(node.left);
+            System.out.println(node.element);
+            middle(node.right);
+
+        }
+        public void middle(){
+            middle((erchasousuo<E>.Node<E>) root);
+        }
+
+
+
+
+        private void last(erchasousuo<E>.Node<E> node){
+            if (node==null) return;
+            last(node.left);
+            last(node.right);
+            System.out.println(node.element);
+
+
+
+        }
+
+        public void last(){
+            last((erchasousuo<E>.Node<E>) root);
         }
     }
 }
