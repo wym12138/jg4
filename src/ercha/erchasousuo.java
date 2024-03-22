@@ -1,5 +1,10 @@
 package ercha;
 
+import linked.Linklist;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class erchasousuo <E>{
 
     private int size;
@@ -84,18 +89,47 @@ public class erchasousuo <E>{
             throw new IllegalArgumentException("不能唯恐");
         }
     }
-    private class Node<E>{
+    //------------------------遍历接口:用户自己设计遍历
+    public void levelorder(Visitor<E> visitor){
+        if (root==null)return;
+        Queue<Node<E>> queue=new LinkedList<>();
+        queue.offer(root);//
+        while (!queue.isEmpty()){
+            Node<E> poll = queue.poll();
+            if(visitor.visit(poll.element))return;//boolean增强便利
+            if (poll.left!=null){
+                queue.offer(poll.left);
+            }
+            if (poll.right!=null){
+                queue.offer(poll.right);
+            }
+        }
+    }
+    public static abstract class Visitor<E>{
+
+        boolean stop;//用于迭代//一次visit一个stop//需要两次return
+        abstract boolean visit(E element);//如果为true就停止遍历
+    }
+    //--------------------------
+    private class Node<E> {
         E element;
         Node<E> left;
         Node<E> right;
         Node<E> parent;
 
 
-        public Node(E element,Node<E> parent){
-            this.element=element;
-            this.parent=parent;
+        public Node(E element, Node<E> parent) {
+            this.element = element;
+            this.parent = parent;
         }
 
+        public boolean isLeaf(){
+            return left==null&&right==null;
+        }
+        public boolean two(){
+            return left!=null&&right!=null;
+        }
+    }
         //------------------------遍历
         private void preorder(erchasousuo<E>.Node<E> node){
             if (node==null) return;
@@ -128,13 +162,132 @@ public class erchasousuo <E>{
             last(node.left);
             last(node.right);
             System.out.println(node.element);
-
-
-
         }
 
         public void last(){
             last((erchasousuo<E>.Node<E>) root);
         }
+
+
+
+    public void cengxu(){
+        if (root==null)return;
+        Queue<Node<E>> queue=new LinkedList<>();
+        queue.offer(root);//
+        while (!queue.isEmpty()){
+            Node<E> poll = queue.poll();
+            System.out.println(poll.element);
+            if (poll.left!=null){
+                queue.offer(poll.left);
+            }
+            if (poll.right!=null){
+                queue.offer(poll.right);
+            }
+        }
+
+
+    }
+    //--------------------打印树
+    public String toString(){
+        StringBuilder sb =new StringBuilder();
+        toString(root,sb,"");
+        return sb.toString();
+    }
+
+    private void toString(Node<E> node,StringBuilder sb,String prefix){
+        if (node==null) return;
+        //前序遍历
+        sb.append(prefix).append(node.element).append("\n");
+        toString(node.left,sb,prefix+"L");
+        toString(node.right,sb,prefix+"R");
+
+    }
+    //----------------------------hight
+    public int hight(){
+        return hight(root);
+    }
+
+    private int hight(Node<E> node){
+        if (node==null) return 0;
+        return 1+Math.max(hight(node.left),hight(node.right));
+    }
+
+
+    public int hight1(){
+        return hight(root);
+    }
+
+    private int hight1(Node<E> node){//需知道一层有多少个
+
+        int hight=0;
+        int levelsize=1;//存储每一层的元素数量
+
+        if (root==null) return 0;
+        Queue<Node<E>> queue=new LinkedList<>();
+        queue.offer(root);//
+        while (!queue.isEmpty()){
+            Node<E> poll = queue.poll();
+            levelsize--;
+            if (poll.left!=null){
+                queue.offer(poll.left);
+            }
+            if (poll.right!=null){
+                queue.offer(poll.right);
+            }
+            if (levelsize==0){
+                levelsize=queue.size();
+                hight++;
+            }
+        }
+        return hight;
+    }
+    //--------------------------是否为瓦努请按二叉树
+    boolean leaf=false;
+    public boolean isComplete(){
+        if (root==null) return false;
+        Queue<Node<E>> queue=new LinkedList<>();
+        queue.offer(root);//
+        while (!queue.isEmpty()){
+            Node<E> poll = queue.poll();
+            if (leaf&&!poll.isLeaf()){
+                return false;
+            }
+            if (poll.right!=null&&poll.left!=null){
+                queue.offer(poll.left);
+                queue.offer(poll.right);
+            }else if(poll.left==null&&poll.right!=null){
+                return false;
+            }else {//必须叶子节点
+                leaf=true;
+                if (poll.left!=null){
+                    queue.offer(poll.left);
+                }
+            }
+
+        }
+        return true;
+    }
+
+    public boolean isComplete1() {
+        if (root == null) return false;
+        Queue<Node<E>> queue=new LinkedList<>();
+        queue.offer(root);
+        boolean leaf=false;
+        while (!queue.isEmpty()){
+            Node<E> poll = queue.poll();
+            if (leaf&&!poll.isLeaf()) return false;
+            if (poll.left!=null){
+                queue.offer(poll.left);
+            }else if (poll.right!=null){
+                return false;
+            }
+            if (poll.right!=null){
+                queue.offer(poll.right);
+            }else{
+                leaf=true;
+
+            }
+        }
+        return true;
     }
 }
