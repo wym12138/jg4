@@ -1,7 +1,5 @@
 package ercha;
 
-import linked.Linklist;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -28,9 +26,7 @@ public class erchasousuo <E>{
         return size==0;
     }
 
-    public void clear(){
 
-    }
 
     public void add(E element){
         notnull(element);
@@ -65,11 +61,64 @@ public class erchasousuo <E>{
 
     }
 
-    public void remove(E element){
-
+    public void clear(){
+        root=null;
+        size=0;
     }
 
-    public void contain(E element){
+    public void remove(E element){//实际每两个之间有两根线//度为2：找到前驱/后继.覆盖+删掉
+        remove(node(element));
+
+
+    }
+    private void remove(Node<E> node){//删除节点，提给用户remove方法
+        if (node==null) return;
+        size--;
+        if (node.two()){
+            Node<E> predesessor = predesessor(node);
+            node.element=predesessor.element;
+            node=predesessor;//最终删除node
+        }
+        Node<E> replace=node.left!=null?node.left:node.right;//度只为1/0
+        if (replace!=null){//度为1
+            replace.parent=node.parent;
+            if (node.parent==null){//度为1根
+                root=replace;
+            }
+            if (node==node.parent.left){
+                node.parent.left=replace;
+            }else{
+                node.parent.right=replace;
+            }
+        }else if (node.parent==null){//叶子根
+            root=null;
+        }else {//叶子不根
+            if (node==node.parent.right){
+                node.parent.right=null;
+            }else {
+                node.parent.left=null;
+            }
+        }
+    }
+    private Node<E> node(E element){//现根据元素找到节点
+        Node<E> node=root;
+        while(node!=null){
+            int cmp=compare(element,node.element);
+            if (cmp==0) return node;
+            if (cmp>0){
+                node=node.right;
+            }
+            if (cmp<0){
+                node=node.right;
+            }
+
+        }
+        return null;
+    }
+
+
+    public boolean contain(E element){
+        return node(element)!=null;
 
     }
     //------------------------------------------------------------
@@ -172,7 +221,7 @@ public class erchasousuo <E>{
 
     public void cengxu(){
         if (root==null)return;
-        Queue<Node<E>> queue=new LinkedList<>();
+        Queue<Node<E>> queue=new LinkedList<>();//队列实现
         queue.offer(root);//
         while (!queue.isEmpty()){
             Node<E> poll = queue.poll();
@@ -241,7 +290,7 @@ public class erchasousuo <E>{
         }
         return hight;
     }
-    //--------------------------是否为瓦努请按二叉树
+    //--------------------------是否为完全二叉树
     boolean leaf=false;
     public boolean isComplete(){
         if (root==null) return false;
@@ -289,5 +338,21 @@ public class erchasousuo <E>{
             }
         }
         return true;
+    }
+    //-----------------前驱节点球发
+    private Node<E> predesessor(Node<E> node){
+        if (node==null) return null;
+        if (node.left!=null){
+            Node<E> p=node.left;
+            while (p.right!=null){
+                p=p.right;
+            }
+            return p;
+        }else {
+            while(node.parent!=null&&node==node.parent.left){
+                node=node.parent;
+            }
+            return node.parent;
+        }
     }
 }
