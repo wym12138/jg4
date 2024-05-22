@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ym.mapper.StudentMapper">
+    <insert id="insertStudent">
+        insert into student (username,password) values (#{username},#{password});
+    </insert>
+    <update id="updatePassword">
+        update student set password=#{password} where id=#{id};
+    </update>
+    <update id="reviseTeacher">//注解问题
+        update teacher
+        <set>
+            <if test="reviseUser.username!=null">
+                username=#{reviseUser.username},
+            </if>
+            <if test="reviseUser.name!=null">
+                name=#{reviseUser.name},
+            </if>
+            <if test="reviseUser.gender!=null">
+                gender=#{reviseUser.gender},
+            </if>
+            <if test="reviseUser.mobilephone!=null">
+                mobilephone=#{reviseUser.mobilephone},
+            </if>
+            <if test="reviseUser.jobnumber!=null">
+                jobnumber=#{reviseUser.jobnumber},
+            </if>
+            <if test="reviseUser.academy!=null">
+                academy=#{reviseUser.academy},
+            </if>
+            <if test="subject!=null">
+                subject=#{reviseUser.subject},
+            </if>
+        </set>
+        where id=#{id};
+    </update>
+    <select id="getUsername" resultType="java.lang.String">
+        select username from student where username=#{username};
+    </select>
+    <select id="loginStudent" resultType="com.ym.domain.Student">
+        select * from student where username=#{username} and password=#{password};
+    </select>
+    <select id="searchStudent" resultType="com.ym.domain.returnyou.getUser">
+        select * from student where id=#{id};
+    </select>
+    <select id="getPassword" resultType="java.lang.String">
+        select password from student where id=#{id};
+    </select>
+</mapper>

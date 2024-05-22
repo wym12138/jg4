@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ym.mapper.PaperMapper">
+
+
+    <resultMap id="sp" type="com.ym.domain.returnyou.ReturnPaperList">
+        <id column="p_id" property="id"></id>
+        <result column="p_name" property="title"></result>
+        <result column="class_name" property="catename"></result>
+    </resultMap>
+
+    <resultMap id="sn" type="com.ym.domain.Question">
+        <id column="q_id" property="id"></id>
+    </resultMap>
+
+    <resultMap id="su" type="com.ym.domain.returnyou.ReturnGrade">
+        <id column="p_id" property="id"></id>
+        <result column="class" property="catename"></result>
+        <result column="name" property="studentname"></result>
+        <result column="score" property="grade"></result>
+        <result column="dotime" property="dotime"></result>
+    </resultMap>
+
+
+
+
+
+
+    <insert id="InsertQid">
+        insert into paper_question (p_id,question_id) values (#{pid},#{qid})
+    </insert>
+
+
+
+    <insert id="InsertPaper">
+        insert into paper (p_id,p_name,class_name,subject,t_id) values (null,#{createPaper.title},#{createPaper.catename},#{createPaper.subject},#{id});
+    </insert>
+
+
+    <update id="UpdateCommon">
+        update paper
+        <set>
+            <if test="title!=null">
+                p_name=#{title},
+            </if>
+            <if test="catename!=null">
+                class_name=#{catename},
+            </if>
+        </set>
+        where p_id=#{id};
+
+    </update>
+
+
+    <delete id="DeleteQid">
+        delete from paper_question where p_id=#{id};
+    </delete>
+
+
+    <delete id="DeletePaper">
+        delete from paper where p_id=#{id};
+    </delete>
+
+    <select id="SelectPaper" resultMap="sp">
+        select p_id,p_name,class_name,subject from paper where t_id=#{id};
+    </select>
+
+
+
+    <select id="SelectQuestionId" resultType="java.lang.Integer">
+        select question_id from paper_question where p_id=#{id};
+    </select>
+
+
+
+
+    <select id="SelectQuestion" resultMap="sn">
+        select q_id,question,answer from question where q_id=#{id};
+    </select>
+
+
+    <select id="getPaperName" resultType="com.ym.domain.Paper">
+        select * from paper where p_name=#{name};
+    </select>
+
+
+
+
+    <select id="SelectPaper2" resultMap="sp">
+        select p_id,p_name,class_name,subject from paper where p_id=#{id};
+    </select>
+
+
+    <select id="SelectCid" resultType="java.lang.Integer">
+        select id from course where name=#{subject};
+    </select>
+
+
+    <select id="getQuestion" resultMap="sn">
+        select q_id,question,answer from question where c_id=#{id};
+    </select>
+    <select id="GetPid" resultType="java.lang.Integer">
+        select p_id from paper where t_id=#{id};
+    </select>
+
+
+
+    <select id="GetGrade" resultMap="su">
+        select p_id,class,name,score,dotime from grade where p_id=#{id};
+    </select>
+    <select id="GetPid2" resultType="java.lang.Integer">
+        select p_id from paper where subject=#{subject};
+    </select>
+</mapper>
