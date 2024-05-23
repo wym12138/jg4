@@ -1,5 +1,6 @@
 package com.ym.service.impl;
 
+import com.ym.domain.Grade;
 import com.ym.domain.Paper;
 import com.ym.domain.Question;
 import com.ym.domain.giveme.CreatePaper;
@@ -105,4 +106,23 @@ public class PaperServiceImpl implements PaperService {
         List<Integer> integers = paperMapper.GetPid2(subject);
         return integers;
     }
+
+    @Override
+    public String IdGetAnswer(Integer id) {
+        String s = paperMapper.IdGetAnswer(id);
+        return s;
+    }
+
+    @Override
+    public void InsertGrade(Grade grade) {
+        paperMapper.InsertGrade(grade);
+    }
+
+    @Override
+    public String GetName(Integer id) {
+        String s = paperMapper.GetName(id);
+        return s;
+    }
+
+
 }

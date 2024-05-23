@@ -1,5 +1,6 @@
 package com.ym.mapper;
 
+import com.ym.domain.Grade;
 import com.ym.domain.Paper;
 import com.ym.domain.Question;
 import com.ym.domain.giveme.CreatePaper;
@@ -45,5 +46,14 @@ public interface PaperMapper {
     ReturnGrade GetGrade(Integer id);
 
     List<Integer> GetPid2(String subject);
+
+    String IdGetAnswer(Integer id);
+
+    void InsertGrade(Grade grade);
+
+    String GetName(Integer id);
+
+
+
 
 }

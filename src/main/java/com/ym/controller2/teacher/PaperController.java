@@ -36,7 +36,7 @@ public class PaperController {
         try {
             claims = JwtUtil.parseJWT(token);
         } catch (Exception e) {
-            return new ResponseResult<>(300,"请求异常，请重新登录");
+            return new ResponseResult<>(401,"请求异常，请重新登录");
         }
         String subject = claims.getSubject();
         int id=Integer.parseInt(subject);
@@ -85,7 +85,7 @@ public class PaperController {
         try {
             claims = JwtUtil.parseJWT(token);
         } catch (Exception e) {
-            return new ResponseResult<>(300,"请求异常，请重新登录");
+            return new ResponseResult<>(401,"请求异常，请重新登录");
         }
         String subject = claims.getSubject();
         int t_id=Integer.parseInt(subject);
@@ -119,7 +119,7 @@ public class PaperController {
         try {
             claims = JwtUtil.parseJWT(token);
         } catch (Exception e) {
-            return new ResponseResult<>(300,"请求异常，请重新登录");
+            return new ResponseResult<>(401,"请求异常，请重新登录");
         }
         String subject = claims.getSubject();
         int t_id=Integer.parseInt(subject);
@@ -158,7 +158,7 @@ public class PaperController {
         try {
             claims = JwtUtil.parseJWT(token);
         } catch (Exception e) {
-            return new ResponseResult<>(300,"请求异常，请重新登录");
+            return new ResponseResult<>(401,"请求异常，请重新登录");
         }
         String subject = claims.getSubject();
         int t_id=Integer.parseInt(subject);
@@ -185,7 +185,7 @@ public class PaperController {
         try {
             claims = JwtUtil.parseJWT(token);
         } catch (Exception e) {
-            return new ResponseResult<>(300,"请求异常，请重新登录");
+            return new ResponseResult<>(401,"请求异常，请重新登录");
         }
         String subject = claims.getSubject();
         int t_id=Integer.parseInt(subject);
@@ -205,7 +205,7 @@ public class PaperController {
         try {
             claims = JwtUtil.parseJWT(token);
         } catch (Exception e) {
-            return new ResponseResult<>(300,"请求异常，请重新登录");
+            return new ResponseResult<>(401,"请求异常，请重新登录");
         }
         String bject = claims.getSubject();
         int t_id=Integer.parseInt(bject);
@@ -224,7 +224,7 @@ public class PaperController {
         try {
             claims = JwtUtil.parseJWT(token);
         } catch (Exception e) {
-            return new ResponseResult<>(300,"请求异常，请重新登录");
+            return new ResponseResult<>(401,"请求异常，请重新登录");
         }
         String bject = claims.getSubject();
         int t_id=Integer.parseInt(bject);

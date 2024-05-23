@@ -36,6 +36,10 @@
         insert into paper (p_id,p_name,class_name,subject,t_id) values (null,#{createPaper.title},#{createPaper.catename},#{createPaper.subject},#{id});
     </insert>
 
+    <insert id="InsertGrade">
+        insert into grade (s_id,name,p_id,paper_name,class,score,dotime,status) values (#{s_id},#{name},#{p_id},#{paper_name},#{class_name},#{score},#{dotime},#{status});
+    </insert>
+
 
     <update id="UpdateCommon">
         update paper
@@ -108,7 +112,15 @@
     <select id="GetGrade" resultMap="su">
         select p_id,class,name,score,dotime from grade where p_id=#{id};
     </select>
+
+
     <select id="GetPid2" resultType="java.lang.Integer">
         select p_id from paper where subject=#{subject};
+    </select>
+    <select id="IdGetAnswer" resultType="java.lang.String">
+        select answer from question where q_id=#{id};
+    </select>
+    <select id="GetName" resultType="java.lang.String">
+        select name from student where id=#{id};
     </select>
 </mapper>

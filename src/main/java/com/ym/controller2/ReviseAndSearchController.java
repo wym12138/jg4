@@ -88,7 +88,7 @@ public class ReviseAndSearchController {
         try {
             claims = JwtUtil.parseJWT(token);
         } catch (Exception e) {
-            return new ResponseResult<>(300,"请求异常，请重新登录");
+            return new ResponseResult<>(401,"请求异常，请重新登录");
         }
         String subject = claims.getSubject();
         int id=Integer.parseInt(subject);
@@ -116,7 +116,7 @@ public class ReviseAndSearchController {
             return new ResponseResult<>(200,"修改成功");
 
         }else {
-            return new ResponseResult<>(300,"请求异常");
+            return new ResponseResult<>(300,"rolewrong");
         }
 
 

@@ -1,5 +1,6 @@
 package com.ym.service;
 
+import com.ym.domain.Grade;
 import com.ym.domain.Paper;
 import com.ym.domain.Question;
 import com.ym.domain.giveme.CreatePaper;
@@ -55,6 +56,15 @@ public interface PaperService {
     //通过学科查找试卷id列表
     //通过试卷id查找基本信息
     List<Integer> GetPid2(String subject);
+
+    //通过题目id返回答案
+    //添加成绩表
+    String IdGetAnswer(Integer id);
+    void InsertGrade(Grade grade);
+
+    //通过s_id获取姓名
+
+    String GetName(Integer id);
 
 
 

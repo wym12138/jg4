@@ -44,7 +44,7 @@ public class RegisterController {
             studentService.insertStudent(register);
             return new ResponseResult<>(200,"注册成功");
         }else {
-            return new ResponseResult<>(300,"请求异常");
+            return new ResponseResult<>(300,"rolewrong");
         }
 
     }
