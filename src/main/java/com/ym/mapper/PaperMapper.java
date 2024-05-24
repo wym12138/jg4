@@ -5,6 +5,7 @@ import com.ym.domain.Paper;
 import com.ym.domain.Question;
 import com.ym.domain.giveme.CreatePaper;
 import com.ym.domain.giveme.UpdatePaper;
+import com.ym.domain.returnyou.FiliterS;
 import com.ym.domain.returnyou.ReturnGrade;
 import com.ym.domain.returnyou.ReturnPaperList;
 import org.apache.ibatis.annotations.Mapper;
@@ -57,6 +58,12 @@ public interface PaperMapper {
 
     Integer GetRetest(@Param("p_id") Integer p_id,@Param("s_id") Integer s_id);
 
+    String NgetPaperName(@Param("id") Integer id,@Param("catename") String catename);
+
+
+    Integer GetMaxGrade(@Param("s_id") Integer s_id,@Param("p_id") Integer p_id);
+
+    List<FiliterS> GetFiliterPaper(@Param("t_id") Integer t_id,@Param("title") String title,@Param("catename") String catename);
 
 
 

@@ -110,7 +110,7 @@
 
 
     <select id="GetGrade" resultMap="su">
-        select p_id,class,name,score,dotime from grade where p_id=#{id};
+        select p_id,class,name,score,dotime,status from grade where p_id=#{id};
     </select>
 
 
@@ -125,5 +125,11 @@
     </select>
     <select id="GetUsername" resultType="java.lang.String">
         select username from student where id=#{id};
+    </select>
+    <select id="GetRetest" resultType="java.lang.Integer">
+        select count(*) from grade where s_id=#{s_id} and p_id=#{p_id};
+    </select>
+    <select id="NgetPaperName" resultType="java.lang.String">
+        select p_name from paper where t_id=#{id} class_name=#{catename};
     </select>
 </mapper>

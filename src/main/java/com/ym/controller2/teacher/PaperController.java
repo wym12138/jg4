@@ -6,6 +6,7 @@ import com.ym.domain.ResponseResult;
 import com.ym.domain.giveme.CreatePaper;
 import com.ym.domain.giveme.PaperList;
 import com.ym.domain.giveme.UpdatePaper;
+import com.ym.domain.returnyou.FiliterS;
 import com.ym.domain.returnyou.ReturnGrade;
 import com.ym.domain.returnyou.ReturnPaperList;
 import com.ym.service.PaperService;
@@ -30,7 +31,7 @@ public class PaperController {
 
 
     @RequestMapping("/my/article/list")
-    public ResponseResult getPaperList(@RequestParam("pagenum")Integer pagenum,@RequestParam("pagesize")Integer pagesize , HttpServletRequest request){
+    public ResponseResult getPaperList(HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;
         try {
@@ -116,11 +117,13 @@ public class PaperController {
         //查找是否有相同试卷名
         //添加paper库
         //添加paper_question库
-        Paper paper = paperService.getPaperName(createPaper.getTitle());
+        //Paper paper = paperService.getPaperName(createPaper.getTitle());修改：项目中的所有试卷都可以重复，一个老师出的试卷也可以重复，但是一个老师并且同一个班的试卷不能重复！
+
+        String paper = paperService.NgetPaperName(t_id, createPaper.getCatename());
         if (paper==null){
 
         }else {
-            return new ResponseResult<>(400,"试卷名重复");
+            return new ResponseResult<>(400,"一个老师在同一班级内的试卷名重复");
         }
         paperService.InsertPaper(createPaper,t_id);
 
@@ -229,6 +232,27 @@ public class PaperController {
             }
         }
         return new ResponseResult<>(200,"获取成功",returnGrades);
+
+
+    }
+
+
+    @PostMapping("/my/article/filterlist")
+    public ResponseResult FilterSelect(@RequestParam("catename") String catename,@RequestParam("title") String title,HttpServletRequest request){
+        String token = request.getHeader("Authorization");
+        Claims claims;
+        try {
+            claims = JwtUtil.parseJWT(token);
+        } catch (Exception e) {
+            return new ResponseResult<>(401,"请求异常，请重新登录");
+        }
+        String bject = claims.getSubject();
+        int t_id=Integer.parseInt(bject);
+
+
+        //通过t_id，title，catename查找符合条件的试卷
+        List<FiliterS> filiterS = paperService.GetFiliterPaper(t_id, title, catename);
+        return new ResponseResult<>(200,"查询成功",filiterS);
 
 
     }

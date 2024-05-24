@@ -5,6 +5,7 @@ import com.ym.domain.Paper;
 import com.ym.domain.Question;
 import com.ym.domain.giveme.CreatePaper;
 import com.ym.domain.giveme.UpdatePaper;
+import com.ym.domain.returnyou.FiliterS;
 import com.ym.domain.returnyou.ReturnGrade;
 import com.ym.domain.returnyou.ReturnPaperList;
 
@@ -29,11 +30,13 @@ public interface PaperService {
     void DeleteQid(Integer id);
     void InsertQid(Integer qid,Integer id);
 
-    //查找是否有相同试卷名
+    //查找是否有相同试卷名//修改：查找一个老师的并且班级一样的试卷
     //添加paper库
     //添加paper_question库
     Paper getPaperName(String name);
     void InsertPaper(CreatePaper createPaper,Integer id);
+
+    String NgetPaperName(Integer id,String catename);
 
 
     //通过p_id查找试卷基本信息
@@ -68,6 +71,13 @@ public interface PaperService {
     String GetUsername(Integer id);
 
     Integer GetRetest(Integer p_id,Integer s_id);
+
+
+    //通过s_id，p_id查找成绩
+    Integer GetMaxGrade(Integer s_id,Integer p_id);
+
+    //通过t_id，title，catename查找符合条件的试卷
+    List<FiliterS> GetFiliterPaper(Integer t_id,String title,String catename);
 
 
 

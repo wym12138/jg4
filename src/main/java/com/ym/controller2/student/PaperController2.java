@@ -51,6 +51,10 @@ public class PaperController2 {
         }
         for (int i=0;i< integers.size();i++){
             Integer id1 = integers.get(i);//每个试卷id
+            //改：添加成绩
+                //通过s_id，p_id查找成绩
+            Integer i1 = paperService.GetMaxGrade(s_id, id1);
+            lists.get(i).setGrade(i1);//成绩
             List<Integer> id2 = paperService.SelectQuestionId(id1);//题的id
             List<Question> questions=new ArrayList<>();
             for (int j=0;j<id2.size();j++){
@@ -59,6 +63,9 @@ public class PaperController2 {
             }
             lists.get(i).setContent(questions);
         }
+
+
+
 
         return new ResponseResult<>(200,"获取成功",lists);
 

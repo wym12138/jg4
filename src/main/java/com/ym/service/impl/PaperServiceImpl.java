@@ -5,6 +5,7 @@ import com.ym.domain.Paper;
 import com.ym.domain.Question;
 import com.ym.domain.giveme.CreatePaper;
 import com.ym.domain.giveme.UpdatePaper;
+import com.ym.domain.returnyou.FiliterS;
 import com.ym.domain.returnyou.ReturnGrade;
 import com.ym.domain.returnyou.ReturnPaperList;
 import com.ym.mapper.PaperMapper;
@@ -63,6 +64,12 @@ public class PaperServiceImpl implements PaperService {
     @Override
     public void InsertPaper(CreatePaper createPaper, Integer id) {
         paperMapper.InsertPaper(createPaper,id);
+    }
+
+    @Override
+    public String NgetPaperName(Integer id, String catename) {
+        String s = paperMapper.NgetPaperName(id, catename);
+        return s;
     }
 
     @Override
@@ -134,6 +141,19 @@ public class PaperServiceImpl implements PaperService {
     public Integer GetRetest(Integer p_id, Integer s_id) {
         Integer i = paperMapper.GetRetest(p_id, s_id);
         return i;
+    }
+
+    @Override
+    public Integer GetMaxGrade(Integer s_id, Integer p_id) {
+        Integer i = paperMapper.GetMaxGrade(s_id, p_id);
+        return i;
+    }
+
+    @Override
+    public List<FiliterS> GetFiliterPaper(Integer t_id, String title, String catename) {
+        List<FiliterS> filiterS = paperMapper.GetFiliterPaper(t_id, title, catename);
+
+        return filiterS;
     }
 
 

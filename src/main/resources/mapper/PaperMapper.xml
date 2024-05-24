@@ -21,6 +21,13 @@
         <result column="dotime" property="dotime"></result>
     </resultMap>
 
+    <resultMap id="sk" type="com.ym.domain.returnyou.FiliterS">
+        <id column="p_id" property="id"></id>
+        <collection property="catename" column="class_name"></collection>
+        <collection property="title" column="p_name"></collection>
+    </resultMap>
+
+
 
 
 
@@ -129,4 +136,27 @@
     <select id="GetRetest" resultType="java.lang.Integer">
         select count(*) from grade where s_id=#{s_id} and p_id=#{p_id};
     </select>
+    <select id="NgetPaperName" resultType="java.lang.String">
+        select p_name from paper where t_id=#{id} class_name=#{catename};
+    </select>
+    <select id="GetMaxGrade" resultType="java.lang.Integer">
+        select max(score) from grade where s_id=#{s_id} and p_id=#{p_id};
+    </select>
+    <select id="GetFiliterPaper" resultMap="sk">
+        select p_id,p_name,class_name from paper
+        <where>
+            <if test="catename!=null">
+                and class_name=#{catename}
+            </if>
+            <if test="title!=null">
+                and p_name=#{title}
+            </if>
+            <if test="t_id!=null">
+                and t_id=#{t_id}
+            </if>
+        </where>
+    </select>
+
+
+
 </mapper>
