@@ -8,28 +8,28 @@
         update student set password=#{password} where id=#{id};
     </update>
     <update id="reviseTeacher">//注解问题
-        update teacher
+        update student
         <set>
-            <if test="username!=null">
-                username=#{username},
+            <if test="reviseUser.username!=null">
+                username=#{reviseUser.username},
             </if>
-            <if test="name!=null">
-                name=#{name},
+            <if test="reviseUser.name!=null">
+                name=#{reviseUser.name},
             </if>
-            <if test="gender!=null">
-                gender=#{gender},
+            <if test="reviseUser.gender!=null">
+                gender=#{reviseUser.gender},
             </if>
-            <if test="mobilephone!=null">
-                mobilephone=#{mobilephone},
+            <if test="reviseUser.mobilephone!=null">
+                mobilephone=#{reviseUser.mobilephone},
             </if>
-            <if test="jobnumber!=null">
-                jobnumber=#{jobnumber},
+            <if test="reviseUser.jobnumber!=null">
+                jobnumber=#{reviseUser.jobnumber},
             </if>
-            <if test="academy!=null">
-                academy=#{academy},
+            <if test="reviseUser.academy!=null">
+                academy=#{reviseUser.academy},
             </if>
             <if test="subject!=null">
-                subject=#{subject},
+                subject=#{reviseUser.subject},
             </if>
         </set>
         where id=#{id};

@@ -124,5 +124,11 @@ public class PaperServiceImpl implements PaperService {
         return s;
     }
 
+    @Override
+    public String GetUsername(Integer id) {
+        String s = paperMapper.GetUsername(id);
+        return s;
+    }
+
 
 }

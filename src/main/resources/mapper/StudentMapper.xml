@@ -8,7 +8,7 @@
         update student set password=#{password} where id=#{id};
     </update>
     <update id="reviseTeacher">//注解问题
-        update teacher
+        update student
         <set>
             <if test="reviseUser.username!=null">
                 username=#{reviseUser.username},

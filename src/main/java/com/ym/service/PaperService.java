@@ -65,6 +65,7 @@ public interface PaperService {
     //通过s_id获取姓名
 
     String GetName(Integer id);
+    String GetUsername(Integer id);
 
 
 

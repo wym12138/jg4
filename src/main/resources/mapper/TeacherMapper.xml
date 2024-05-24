@@ -9,30 +9,30 @@
         update teacher set password=#{password} where id=#{id};
     </update>
 
-    <update id="reviseTeacher">
+    <update id="reviseTeacher" parameterType="map">
             update teacher
             <set>
-                <if test="reviseUser.username!=null">
-                    username=#{reviseUser.username},
-                </if>
-                <if test="reviseUser.name!=null">
-                    name=#{reviseUser.name},
-                </if>
-                <if test="reviseUser.gender!=null">
-                    gender=#{reviseUser.gender},
-                </if>
-                <if test="reviseUser.mobilephone!=null">
-                    mobilephone=#{reviseUser.mobilephone},
-                </if>
-                <if test="reviseUser.jobnumber!=null">
-                    jobnumber=#{reviseUser.jobnumber},
-                </if>
-                <if test="reviseUser.academy!=null">
-                    academy=#{reviseUser.academy},
-                </if>
-                <if test="reviseUser.subject!=null">
-                    subject=#{reviseUser.subject},
-                </if>
+                    <if test="reviseUser.username!=null">
+                        username=#{reviseUser.username},
+                    </if>
+                    <if test="reviseUser.name!=null">
+                        name=#{reviseUser.name},
+                    </if>
+                    <if test="reviseUser.gender!=null">
+                        gender=#{reviseUser.gender},
+                    </if>
+                    <if test="reviseUser.mobilephone!=null">
+                        mobilephone=#{reviseUser.mobilephone},
+                    </if>
+                    <if test="reviseUser.jobnumber!=null">
+                        jobnumber=#{reviseUser.jobnumber},
+                    </if>
+                    <if test="reviseUser.academy!=null">
+                        academy=#{reviseUser.academy},
+                    </if>
+                    <if test="reviseUser.subject!=null">
+                        subject=#{reviseUser.subject},
+                    </if>
             </set>
            where id=#{id};
     </update>

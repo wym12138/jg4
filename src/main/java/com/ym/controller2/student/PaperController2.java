@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class PaperController {
+public class PaperController2 {
 
     @Autowired
     private PaperService paperService;
@@ -26,7 +26,7 @@ public class PaperController {
 
 
     @RequestMapping("/my/student/paper")
-    public ResponseResult getStudentPaper(@PathVariable String subject, HttpServletRequest request){
+    public ResponseResult getStudentPaper(@RequestParam("subject") String subject, HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;
         try {
@@ -98,10 +98,17 @@ public class PaperController {
         //添加成绩表
         Grade grade=new Grade(s_id,null,postPaper.getId(),postPaper.getTitle(),postPaper.getCatename(),score,postPaper.getDotime(),null);
             //通过s_id获取姓ming
-        String s = paperService.GetName(s_id);/////////////////////////////////
-        grade.setName(s);
+        String name = paperService.GetName(s_id);/////////////////////////////////
+        String username=paperService.GetUsername(s_id);
+        if (name==null){
+            grade.setName(username);
+        }else {
+            grade.setName(name);
+        }
+
+
             //添加题库
-        paperService.InsertGrade(grade);
+         paperService.InsertGrade(grade);
 
 
         //返回成绩

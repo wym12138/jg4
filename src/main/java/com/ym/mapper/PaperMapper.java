@@ -21,7 +21,7 @@ public interface PaperMapper {
 
     Question SelectQuestion(Integer id);
 
-    void UpdateCommon(UpdatePaper updatePaper);/////////////////////////////
+    void UpdateCommon( UpdatePaper updatePaper);/////////////////////////////
 
     void DeleteQid(Integer id);
 
@@ -52,6 +52,8 @@ public interface PaperMapper {
     void InsertGrade(Grade grade);
 
     String GetName(Integer id);
+
+    String GetUsername(Integer id);
 
 
 

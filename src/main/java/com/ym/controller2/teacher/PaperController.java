@@ -30,7 +30,7 @@ public class PaperController {
 
 
     @RequestMapping("/my/article/list")
-    public ResponseResult getPaperList(@RequestBody PaperList paperList, HttpServletRequest request){
+    public ResponseResult getPaperList(@RequestParam("pagenum")Integer pagenum,@RequestParam("pagesize")Integer pagesize , HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;
         try {
@@ -54,26 +54,14 @@ public class PaperController {
             }
             lists.get(i).setContent(questions);
         }
-        List<ReturnPaperList> lists2=new ArrayList<>();
-        Integer pagenum = paperList.getPagenum();
-        Integer pagesize = paperList.getPagesize();
-        int m=0;
-        int n = (pagenum-1) * pagesize;
-        while (m<pagesize){
-            if (n>=lists.size()){
-                break;
-            }
-            ReturnPaperList returnPaperList = lists.get(n);
-            lists2.add(returnPaperList);
-            n++;
-            m++;
-        }
-        for (int k=0;k<lists2.size();k++){
-            lists2.get(k).setTotal(m);//添加每一页的个数
+        for (int k=0;k<lists.size();k++){
+            lists.get(k).setTotal(lists.size());
         }
 
 
-        return new ResponseResult<>(200,"查询成功",lists2);
+
+
+        return new ResponseResult<>(200,"查询成功",lists);
 
     }
 
@@ -152,7 +140,7 @@ public class PaperController {
 
 
     @RequestMapping("/my/article/info")
-    public ResponseResult GetNbPaper(@PathVariable Integer id,HttpServletRequest request){
+    public ResponseResult GetNbPaper(@RequestParam("id") Integer id,HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;
         try {
@@ -173,13 +161,14 @@ public class PaperController {
             questions.add(question);
         }
         returnPaperList.setContent(questions);
+        returnPaperList.setTotal(1);
 
         return new ResponseResult<>(200,"获取成功",returnPaperList);
 
     }
 
     @DeleteMapping("/my/article/info")
-    public ResponseResult DeletePaper(@PathVariable Integer id,HttpServletRequest request){
+    public ResponseResult DeletePaper(@RequestParam("id") Integer id,HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;
         try {
@@ -198,8 +187,8 @@ public class PaperController {
 
     }
 
-    @RequestMapping("/my/article/papers")
-    public ResponseResult SelectQuestions(@PathVariable String subject,HttpServletRequest request){
+    @GetMapping("/my/article/papers")
+    public ResponseResult SelectQuestions(@RequestParam("subject") String subject,HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;
         try {
