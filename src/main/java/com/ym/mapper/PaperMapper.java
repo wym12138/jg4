@@ -43,7 +43,7 @@ public interface PaperMapper {
 
     List<Integer> GetPid(Integer id);
 
-    ReturnGrade GetGrade(Integer id);
+    List<ReturnGrade> GetGrade(Integer id);
 
     List<Integer> GetPid2(String subject);
 
@@ -54,6 +54,8 @@ public interface PaperMapper {
     String GetName(Integer id);
 
     String GetUsername(Integer id);
+
+    Integer GetRetest(@Param("p_id") Integer p_id,@Param("s_id") Integer s_id);
 
 
 

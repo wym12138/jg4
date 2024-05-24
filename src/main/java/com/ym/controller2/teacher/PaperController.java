@@ -223,8 +223,10 @@ public class PaperController {
         List<Integer> integers = paperService.GetPid(t_id);
         List<ReturnGrade> returnGrades=new ArrayList<>();
         for (int i=0;i<integers.size();i++){
-            ReturnGrade returnGrade = paperService.GetGrade(integers.get(i));
-            returnGrades.add(returnGrade);
+            List<ReturnGrade> returnGrade = paperService.GetGrade(integers.get(i));
+            for (int j=0;j<returnGrade.size();j++){
+                returnGrades.add(returnGrade.get(j));
+            }
         }
         return new ResponseResult<>(200,"获取成功",returnGrades);
 

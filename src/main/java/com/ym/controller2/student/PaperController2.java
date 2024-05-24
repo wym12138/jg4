@@ -93,21 +93,28 @@ public class PaperController2 {
             }
             m++;
         }
-        int score=n/m;
+        int score=(m==0)?0:(n*100)/m;
+
+
 
         //添加成绩表
         Grade grade=new Grade(s_id,null,postPaper.getId(),postPaper.getTitle(),postPaper.getCatename(),score,postPaper.getDotime(),null);
             //通过s_id获取姓ming
         String name = paperService.GetName(s_id);/////////////////////////////////
         String username=paperService.GetUsername(s_id);
+        //判断姓名
         if (name==null){
             grade.setName(username);
         }else {
             grade.setName(name);
         }
+        //判断重写
+            //根据p_id，s_id判断有无重写记录
+        Integer i = paperService.GetRetest(postPaper.getId(), s_id);
+        grade.setStatus(i);
 
 
-            //添加题库
+        //添加题库
          paperService.InsertGrade(grade);
 
 

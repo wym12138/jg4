@@ -51,7 +51,7 @@ public interface PaperService {
     //通过t_id查找p_id集合
     //p_id查找基本信息
     List<Integer> GetPid(Integer id);
-    ReturnGrade GetGrade(Integer id);
+    List<ReturnGrade> GetGrade(Integer id);
 
     //通过学科查找试卷id列表
     //通过试卷id查找基本信息
@@ -63,9 +63,11 @@ public interface PaperService {
     void InsertGrade(Grade grade);
 
     //通过s_id获取姓名
-
+    //根据p_id，s_id判断有无重写记录
     String GetName(Integer id);
     String GetUsername(Integer id);
+
+    Integer GetRetest(Integer p_id,Integer s_id);
 
 
 

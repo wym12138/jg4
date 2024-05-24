@@ -12,8 +12,8 @@ public class ReviseUser {
 
     private String name;
     private String gender;
-    private Integer mobilephone;
-    private Integer jobnumber;
+    private String mobilephone;
+    private String jobnumber;
     private String academy;
 
     private String subject;

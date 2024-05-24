@@ -96,8 +96,8 @@ public class PaperServiceImpl implements PaperService {
     }
 
     @Override
-    public ReturnGrade GetGrade(Integer id) {
-        ReturnGrade returnGrade = paperMapper.GetGrade(id);
+    public List<ReturnGrade> GetGrade(Integer id) {
+        List<ReturnGrade> returnGrade = paperMapper.GetGrade(id);
         return returnGrade;
     }
 
@@ -128,6 +128,12 @@ public class PaperServiceImpl implements PaperService {
     public String GetUsername(Integer id) {
         String s = paperMapper.GetUsername(id);
         return s;
+    }
+
+    @Override
+    public Integer GetRetest(Integer p_id, Integer s_id) {
+        Integer i = paperMapper.GetRetest(p_id, s_id);
+        return i;
     }
 
 
