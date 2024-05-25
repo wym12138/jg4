@@ -14,7 +14,7 @@ public interface TeacherService {
 
     //登陆相关操作
     String getUsername(String username);
-    Teacher loginTeacher(Login login);
+    Integer loginTeacher(Login login);
 
 
     void insertTeacher(Register register);

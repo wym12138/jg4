@@ -12,7 +12,7 @@ public interface StudentService {
 
     String getUsername(String username);
 
-    Student loginStudent(Login login);
+    Integer loginStudent(Login login);
 
 
     void insertStudent(Register register);

@@ -8,6 +8,7 @@ import com.ym.domain.giveme.UpdatePaper;
 import com.ym.domain.returnyou.FiliterS;
 import com.ym.domain.returnyou.ReturnGrade;
 import com.ym.domain.returnyou.ReturnPaperList;
+import com.ym.domain.returnyou.ReturnPaperList2;
 
 import java.util.List;
 
@@ -78,6 +79,10 @@ public interface PaperService {
 
     //通过t_id，title，catename查找符合条件的试卷
     List<FiliterS> GetFiliterPaper(Integer t_id,String title,String catename);
+
+
+    //重写对应类
+    ReturnPaperList2 SelectPaper3(Integer id);
 
 
 

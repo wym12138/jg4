@@ -16,7 +16,7 @@ public interface TeacherMapper {
     //教师登录
     String getUsername(String username);
 
-    Teacher loginTeacher(Login login);
+    Integer loginTeacher(Login login);
 
     void insertTeacher(Register register);
 

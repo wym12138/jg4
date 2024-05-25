@@ -7,6 +7,7 @@ import com.ym.domain.ResponseResult;
 import com.ym.domain.giveme.PostPaper;
 import com.ym.domain.giveme.StudentAnswer;
 import com.ym.domain.returnyou.ReturnPaperList;
+import com.ym.domain.returnyou.ReturnPaperList2;
 import com.ym.service.PaperService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +44,10 @@ public class PaperController2 {
         //通过试卷id查找基本信息
         //通过每个试卷id查题id
         //通过题id查题的question和answer
-        List<ReturnPaperList> lists=new ArrayList<>();
+        List<ReturnPaperList2> lists=new ArrayList<>();
 
         for (int i=0;i<integers.size();i++){
-            ReturnPaperList returnPaperList = paperService.SelectPaper2(integers.get(i));
+            ReturnPaperList2 returnPaperList = paperService.SelectPaper3(integers.get(i));
             lists.add(returnPaperList);
         }
         for (int i=0;i< integers.size();i++){
@@ -54,7 +55,13 @@ public class PaperController2 {
             //改：添加成绩
                 //通过s_id，p_id查找成绩
             Integer i1 = paperService.GetMaxGrade(s_id, id1);
+                    //修改2：isexamstarted的添加，判断如果成绩为null，返回false(重写按钮的实现）
             lists.get(i).setGrade(i1);//成绩
+            if (i1==null){
+                lists.get(i).setIsExamStarted(false);
+            }else {
+                lists.get(i).setIsExamStarted(true);
+            }
             List<Integer> id2 = paperService.SelectQuestionId(id1);//题的id
             List<Question> questions=new ArrayList<>();
             for (int j=0;j<id2.size();j++){

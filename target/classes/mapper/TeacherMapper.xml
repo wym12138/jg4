@@ -40,8 +40,8 @@
     <select id="getUsername" resultType="java.lang.String">
         select username from teacher where username=#{username};
     </select>
-    <select id="loginTeacher" resultType="com.ym.domain.Teacher">
-        select * from teacher where username=#{username} and password=#{password};
+    <select id="loginTeacher" resultType="java.lang.Integer">
+        select id from teacher where username=#{username} and password=#{password};
     </select>
     <select id="searchTeacher" resultType="com.ym.domain.returnyou.getUser">
         select * from teacher where id=#{id};

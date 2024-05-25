@@ -8,6 +8,7 @@ import com.ym.domain.giveme.UpdatePaper;
 import com.ym.domain.returnyou.FiliterS;
 import com.ym.domain.returnyou.ReturnGrade;
 import com.ym.domain.returnyou.ReturnPaperList;
+import com.ym.domain.returnyou.ReturnPaperList2;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -65,6 +66,7 @@ public interface PaperMapper {
 
     List<FiliterS> GetFiliterPaper(@Param("t_id") Integer t_id,@Param("title") String title,@Param("catename") String catename);
 
+    ReturnPaperList2 SelectPaper3(Integer id);
 
 
 }

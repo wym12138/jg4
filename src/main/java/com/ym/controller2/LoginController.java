@@ -35,12 +35,12 @@ public class LoginController {
             }else {
 
             }
-            Teacher teacher = teacherService.loginTeacher(login);
+            Integer teacher = teacherService.loginTeacher(login);
 
-            if (teacher.getId()==null){
+            if (teacher==null){
                 return new ResponseResult(400,"密码错误",null);
             }else {
-                String jwt = JwtUtil.createJWT(UUID.randomUUID().toString(), String.valueOf(teacher.getId()), null);
+                String jwt = JwtUtil.createJWT(UUID.randomUUID().toString(), String.valueOf(teacher), null);
                 return new ResponseResult(200,"登陆成功",jwt);
             }
         }else if(role.equals("student")){
@@ -49,12 +49,13 @@ public class LoginController {
                 return new ResponseResult(400,"用户名不存在",null);
 
             }else {
+
             }
-            Student student = studentService.loginStudent(login);
-            if (student.getId()==null){
+            Integer student = studentService.loginStudent(login);
+            if (student==null){
                 return new ResponseResult(400,"密码错误",null);
             }else {
-                String jwt = JwtUtil.createJWT(UUID.randomUUID().toString(), String.valueOf(student.getId()), null);
+                String jwt = JwtUtil.createJWT(UUID.randomUUID().toString(), String.valueOf(student), null);
                 return new ResponseResult(200,"登陆成功",jwt);
             }
 

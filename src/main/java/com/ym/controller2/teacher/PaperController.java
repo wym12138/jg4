@@ -237,8 +237,8 @@ public class PaperController {
     }
 
 
-    @PostMapping("/my/article/filterlist")
-    public ResponseResult FilterSelect(@RequestParam("catename") String catename,@RequestParam("title") String title,HttpServletRequest request){
+    @RequestMapping ("/my/article/filterlist")
+    public ResponseResult FilterSelect(@RequestParam(value = "catename") String catename,@RequestParam(value = "title") String title,HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;
         try {

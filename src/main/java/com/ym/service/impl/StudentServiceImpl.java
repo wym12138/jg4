@@ -23,8 +23,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student loginStudent(Login login) {
-        Student student = studentMapper.loginStudent(login);
+    public Integer loginStudent(Login login) {
+        Integer student = studentMapper.loginStudent(login);
         return student;
     }
 

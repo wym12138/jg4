@@ -37,8 +37,8 @@
     <select id="getUsername" resultType="java.lang.String">
         select username from student where username=#{username};
     </select>
-    <select id="loginStudent" resultType="com.ym.domain.Student">
-        select * from student where username=#{username} and password=#{password};
+    <select id="loginStudent" resultType="java.lang.Integer">
+        select id from student where username=#{username} and password=#{password};
     </select>
     <select id="searchStudent" resultType="com.ym.domain.returnyou.getUser">
         select * from student where id=#{id};

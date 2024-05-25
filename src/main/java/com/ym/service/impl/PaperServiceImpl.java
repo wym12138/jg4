@@ -8,6 +8,7 @@ import com.ym.domain.giveme.UpdatePaper;
 import com.ym.domain.returnyou.FiliterS;
 import com.ym.domain.returnyou.ReturnGrade;
 import com.ym.domain.returnyou.ReturnPaperList;
+import com.ym.domain.returnyou.ReturnPaperList2;
 import com.ym.mapper.PaperMapper;
 import com.ym.service.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +155,12 @@ public class PaperServiceImpl implements PaperService {
         List<FiliterS> filiterS = paperMapper.GetFiliterPaper(t_id, title, catename);
 
         return filiterS;
+    }
+
+    @Override
+    public ReturnPaperList2 SelectPaper3(Integer id) {
+        ReturnPaperList2 returnPaperList2 = paperMapper.SelectPaper3(id);
+        return returnPaperList2;
     }
 
 

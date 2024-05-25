@@ -9,6 +9,12 @@
         <result column="class_name" property="catename"></result>
     </resultMap>
 
+    <resultMap id="sp2" type="com.ym.domain.returnyou.ReturnPaperList2">
+        <id column="p_id" property="id"></id>
+        <result column="p_name" property="title"></result>
+        <result column="class_name" property="catename"></result>
+    </resultMap>
+
     <resultMap id="sn" type="com.ym.domain.Question">
         <id column="q_id" property="id"></id>
     </resultMap>
@@ -23,8 +29,8 @@
 
     <resultMap id="sk" type="com.ym.domain.returnyou.FiliterS">
         <id column="p_id" property="id"></id>
-        <collection property="catename" column="class_name"></collection>
-        <collection property="title" column="p_name"></collection>
+        <result property="catename" column="class_name"></result>
+        <result property="title" column="p_name"></result>
     </resultMap>
 
 
@@ -156,7 +162,9 @@
             </if>
         </where>
     </select>
-
+    <select id="SelectPaper3" resultMap="sp2">
+        select p_id,p_name,class_name,subject from paper where p_id=#{id};
+    </select>
 
 
 </mapper>

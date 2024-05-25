@@ -24,8 +24,8 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Teacher loginTeacher(Login login) {
-        Teacher teacher = teacherMapper.loginTeacher(login);
+    public Integer loginTeacher(Login login) {
+        Integer teacher = teacherMapper.loginTeacher(login);
         return teacher;
     }
 
