@@ -14,4 +14,5 @@ public class ReturnGrade {
     private String catename;
     private Integer dotime;
     private Integer grade;
+    private Integer status;
 }

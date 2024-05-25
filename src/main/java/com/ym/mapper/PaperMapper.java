@@ -59,7 +59,7 @@ public interface PaperMapper {
 
     Integer GetRetest(@Param("p_id") Integer p_id,@Param("s_id") Integer s_id);
 
-    String NgetPaperName(@Param("id") Integer id,@Param("catename") String catename);
+    List<String> NgetPaperName(@Param("id") Integer id,@Param("catename") String catename);
 
 
     Integer GetMaxGrade(@Param("s_id") Integer s_id,@Param("p_id") Integer p_id);

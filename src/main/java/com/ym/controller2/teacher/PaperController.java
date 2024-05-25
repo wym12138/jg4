@@ -67,7 +67,7 @@ public class PaperController {
     }
 
 
-    @PutMapping("/my/article/info")
+    @PutMapping("/my/article/info")//////////////////
     public ResponseResult updatePaper(@RequestBody UpdatePaper updatePaper,HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;
@@ -83,9 +83,23 @@ public class PaperController {
         //通过id删除所有题目id
         //通过id和题id添加联表
         Integer id = updatePaper.getId();//试卷id
-        if (updatePaper.getCatename()!=null||updatePaper.getCatename()!=null){
+
+            //修改:检查重复试卷
+        List<String> paper = paperService.NgetPaperName(t_id, updatePaper.getCatename());
+        for (int i=0;i<paper.size();i++){
+            if (paper.get(i).equals(updatePaper.getCatename())){
+                return new ResponseResult<>(400,"一个老师在同一班级内的试卷名重复");
+            }
+        }
+
+
+        if (updatePaper.getCatename()==null&&updatePaper.getTitle()==null){
+
+        }else {
             paperService.UpdateCommon(updatePaper);
         }
+
+
         if (updatePaper.getSid()!=null){
             paperService.DeleteQid(id);//删除题与试卷的连接
             List<Integer> sid = updatePaper.getSid();
@@ -119,11 +133,13 @@ public class PaperController {
         //添加paper_question库
         //Paper paper = paperService.getPaperName(createPaper.getTitle());修改：项目中的所有试卷都可以重复，一个老师出的试卷也可以重复，但是一个老师并且同一个班的试卷不能重复！
 
-        String paper = paperService.NgetPaperName(t_id, createPaper.getCatename());
-        if (paper==null){
+        List<String> paper = paperService.NgetPaperName(t_id, createPaper.getCatename());
+        for (int i=0;i<paper.size();i++){
+            if (paper.get(i).equals(createPaper.getTitle())){
+                return new ResponseResult<>(400,"一个老师在同一班级内的试卷名重复");
+            }else {
 
-        }else {
-            return new ResponseResult<>(400,"一个老师在同一班级内的试卷名重复");
+            }
         }
         paperService.InsertPaper(createPaper,t_id);
 

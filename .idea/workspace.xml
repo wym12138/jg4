@@ -6,32 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="66686b15-54ac-41e0-a02c-05910e984ded" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/controller2/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/controller2/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/controller2/student/PaperController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/controller2/student/PaperController2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/controller2/teacher/PaperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/controller2/teacher/PaperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/domain/returnyou/ReturnGrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/domain/returnyou/ReturnGrade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/mapper/PaperMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/mapper/PaperMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/mapper/StudentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/mapper/StudentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/mapper/TeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/mapper/TeacherMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/service/PaperService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/service/PaperService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/service/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/service/TeacherService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/service/impl/PaperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/service/impl/PaperServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/service/impl/StudentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/service/impl/StudentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ym/service/impl/TeacherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ym/service/impl/TeacherServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/PaperMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/PaperMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/StudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/StudentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/TeacherMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ym/controller2/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/controller2/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ym/controller2/student/PaperController2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/controller2/student/PaperController2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ym/controller2/teacher/PaperController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/controller2/teacher/PaperController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ym/domain/returnyou/ReturnPaperList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/domain/returnyou/ReturnPaperList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ym/mapper/PaperMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/mapper/PaperMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ym/mapper/StudentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/mapper/StudentMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ym/mapper/TeacherMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/mapper/TeacherMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ym/service/PaperService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/service/PaperService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ym/service/impl/PaperServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/service/impl/PaperServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ym/service/impl/StudentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/service/impl/StudentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ym/service/impl/TeacherServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ym/service/impl/TeacherServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/PaperMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/PaperMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +103,7 @@
       <workItem from="1716552822312" duration="12594000" />
       <workItem from="1716577065758" duration="424000" />
       <workItem from="1716578045003" duration="447000" />
-      <workItem from="1716608710002" duration="12457000" />
+      <workItem from="1716608710002" duration="19441000" />
     </task>
     <servers />
   </component>

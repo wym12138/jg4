@@ -99,6 +99,9 @@ public class PaperController2 {
         int m=0;
         int n=0;
         for(int i=0;i<content.size();i++){
+            if (content.get(i)==null){
+                return new ResponseResult<>(400,"传入有误");
+            }
             String answer = paperService.IdGetAnswer(content.get(i).getId());
             if (answer.equals(content.get(i).getStudentanswer())){
                 n++;
@@ -114,7 +117,7 @@ public class PaperController2 {
         //添加成绩表
         Grade grade=new Grade(s_id,null,postPaper.getId(),postPaper.getTitle(),postPaper.getCatename(),score,postPaper.getDotime(),null);
             //通过s_id获取姓ming
-        String name = paperService.GetName(s_id);/////////////////////////////////
+        String name = paperService.GetName(s_id);
         String username=paperService.GetUsername(s_id);
         //判断姓名
         if (name==null){

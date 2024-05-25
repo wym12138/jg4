@@ -37,7 +37,7 @@ public interface PaperService {
     Paper getPaperName(String name);
     void InsertPaper(CreatePaper createPaper,Integer id);
 
-    String NgetPaperName(Integer id,String catename);
+    List<String> NgetPaperName(Integer id,String catename);
 
 
     //通过p_id查找试卷基本信息

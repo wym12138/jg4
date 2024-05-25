@@ -143,7 +143,7 @@
         select count(*) from grade where s_id=#{s_id} and p_id=#{p_id};
     </select>
     <select id="NgetPaperName" resultType="java.lang.String">
-        select p_name from paper where t_id=#{id} class_name=#{catename};
+        select p_name from paper where t_id=#{id} and class_name=#{catename};
     </select>
     <select id="GetMaxGrade" resultType="java.lang.Integer">
         select max(score) from grade where s_id=#{s_id} and p_id=#{p_id};

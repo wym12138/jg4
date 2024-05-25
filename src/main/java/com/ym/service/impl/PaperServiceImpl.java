@@ -68,8 +68,8 @@ public class PaperServiceImpl implements PaperService {
     }
 
     @Override
-    public String NgetPaperName(Integer id, String catename) {
-        String s = paperMapper.NgetPaperName(id, catename);
+    public List<String> NgetPaperName(Integer id, String catename) {
+        List<String> s = paperMapper.NgetPaperName(id, catename);
         return s;
     }
 
