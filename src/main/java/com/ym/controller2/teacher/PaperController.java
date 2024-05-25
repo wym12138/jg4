@@ -268,6 +268,7 @@ public class PaperController {
 
         //通过t_id，title，catename查找符合条件的试卷
         List<FiliterS> filiterS = paperService.GetFiliterPaper(t_id, title, catename);
+
         return new ResponseResult<>(200,"查询成功",filiterS);
 
 

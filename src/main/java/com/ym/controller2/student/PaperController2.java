@@ -40,6 +40,9 @@ public class PaperController2 {
 
 
         //通过学科查找试卷id列表
+        if (subject==null){
+            return new ResponseResult<>(200,"success",null);
+        }
         List<Integer> integers = paperService.GetPid2(subject);
         //通过试卷id查找基本信息
         //通过每个试卷id查题id
@@ -73,7 +76,6 @@ public class PaperController2 {
 
 
 
-
         return new ResponseResult<>(200,"获取成功",lists);
 
     }
@@ -100,8 +102,10 @@ public class PaperController2 {
         int n=0;
         for(int i=0;i<content.size();i++){
             if (content.get(i)==null){
-                return new ResponseResult<>(400,"传入有误");
+                return new ResponseResult<>(400,"传入有误");//如果集合里有null报错
             }
+
+
             String answer = paperService.IdGetAnswer(content.get(i).getId());
             if (answer.equals(content.get(i).getStudentanswer())){
                 n++;
@@ -110,6 +114,14 @@ public class PaperController2 {
             }
             m++;
         }
+            //通过p_id调取题目个数
+            //判断题目返回是否齐全（通过这个可以使计算成绩更加简单且不报错）
+        Integer i1 = paperService.PidReturnQue(postPaper.getId());
+        if (i1!=postPaper.getContent().size()){
+            return new ResponseResult<>(400,"题目未答完整");
+        }
+
+
         int score=(m==0)?0:(n*100)/m;
 
 
@@ -131,7 +143,7 @@ public class PaperController2 {
         grade.setStatus(i);
 
 
-        //添加题库
+        //添加成绩库
          paperService.InsertGrade(grade);
 
 

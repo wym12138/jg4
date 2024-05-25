@@ -14,9 +14,6 @@
     <update id="reviseTeacher" parameterType="map">
             update teacher
             <set>
-                    <if test="reviseUser.username!=null">
-                        username=#{reviseUser.username},
-                    </if>
                     <if test="reviseUser.name!=null">
                         name=#{reviseUser.name},
                     </if>

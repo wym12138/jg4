@@ -85,6 +85,10 @@ public interface PaperService {
     ReturnPaperList2 SelectPaper3(Integer id);
 
 
+    //通过p_id调取题目个数
+    Integer PidReturnQue(Integer id);
+
+
 
 
 

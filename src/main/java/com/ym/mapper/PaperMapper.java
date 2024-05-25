@@ -68,5 +68,7 @@ public interface PaperMapper {
 
     ReturnPaperList2 SelectPaper3(Integer id);
 
+    Integer PidReturnQue(Integer id);
+
 
 }

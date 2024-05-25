@@ -16,7 +16,7 @@ public class getUser {
     private String gender;
 
     private String mobilephone;
-    private Integer jobnumber;
+    private String jobnumber;
     private String academy;
     private String subject;
 }

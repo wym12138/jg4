@@ -7,12 +7,9 @@
     <update id="updatePassword">
         update student set password=#{password} where id=#{id};
     </update>
-    <update id="reviseTeacher">//注解问题
+    <update id="reviseTeacher" parameterType="map">
         update student
         <set>
-            <if test="reviseUser.username!=null">
-                username=#{reviseUser.username},
-            </if>
             <if test="reviseUser.name!=null">
                 name=#{reviseUser.name},
             </if>
@@ -27,9 +24,6 @@
             </if>
             <if test="reviseUser.academy!=null">
                 academy=#{reviseUser.academy},
-            </if>
-            <if test="subject!=null">
-                subject=#{reviseUser.subject},
             </if>
         </set>
         where id=#{id};

@@ -50,7 +50,7 @@ public class ReviseAndSearchController {
     }
 
 
-    @PutMapping ("/my/userinfo")
+    @PatchMapping ("/my/userinfo")
     public ResponseResult revise(@RequestBody ReviseUser reviseUser,HttpServletRequest request){
         String token = request.getHeader("Authorization");
         Claims claims;

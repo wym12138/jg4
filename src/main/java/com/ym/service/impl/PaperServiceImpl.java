@@ -163,5 +163,11 @@ public class PaperServiceImpl implements PaperService {
         return returnPaperList2;
     }
 
+    @Override
+    public Integer PidReturnQue(Integer id) {
+        Integer i = paperMapper.PidReturnQue(id);
+        return i;
+    }
+
 
 }

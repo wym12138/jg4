@@ -165,6 +165,9 @@
     <select id="SelectPaper3" resultMap="sp2">
         select p_id,p_name,class_name,subject from paper where p_id=#{id};
     </select>
+    <select id="PidReturnQue" resultType="java.lang.Integer">
+        select count(question_id) from paper_question where p_id=#{id} and question_id is not null;
+    </select>
 
 
 </mapper>
