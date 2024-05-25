@@ -7,7 +7,7 @@
     <update id="updatePassword">
         update student set password=#{password} where id=#{id};
     </update>
-    <update id="reviseTeacher">//注解问题
+    <update id="reviseTeacher" parameterType="map">//注解问题
         update student
         <set>
             <if test="reviseUser.username!=null">

@@ -9,6 +9,8 @@
         update teacher set password=#{password} where id=#{id};
     </update>
 
+
+
     <update id="reviseTeacher" parameterType="map">
             update teacher
             <set>
